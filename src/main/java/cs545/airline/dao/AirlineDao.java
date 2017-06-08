@@ -5,8 +5,10 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import cs545.airline.model.Airline;
 import edu.mum.gf.workaround.JpaUtil;
@@ -22,7 +24,9 @@ public class AirlineDao {
 
 
 	public void create(Airline airline) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(airline);
+		entityManager.flush();
 	}
 
 	public Airline update(Airline airline) {
