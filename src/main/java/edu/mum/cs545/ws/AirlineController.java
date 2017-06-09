@@ -19,7 +19,6 @@ import javax.ws.rs.core.Response;
 import cs545.airline.model.Airline;
 import cs545.airline.service.AirlineService;
 
-@Named
 @Path("airline")
 public class AirlineController {
 	
