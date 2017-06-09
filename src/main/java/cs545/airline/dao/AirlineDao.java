@@ -34,7 +34,9 @@ public class AirlineDao {
 	}
 
 	public void delete(Airline airline) {
+		entityManager.getTransaction().begin();
 		entityManager.remove(airline);
+		entityManager.flush();
 	}
 
 	public Airline findOne(long id) {
