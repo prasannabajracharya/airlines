@@ -9,10 +9,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 
 import cs545.airline.model.Airline;
 import cs545.airline.service.AirlineService;
@@ -20,6 +20,7 @@ import cs545.airline.service.AirlineService;
 @Named
 @Path("airline")
 public class AirlineController {
+	
 	@Inject
 	private AirlineService airlineService;
 	
@@ -41,9 +42,20 @@ public class AirlineController {
 		}
 	}
 	
-	@PUT
-	@Path("update")
-	public void update(String id){
-		
+	@GET
+	@Path("/{airlineName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Airline getAirlineByName(@PathParam("airlineName") String name){
+		return airlineService.findByName(name);		
 	}
+	
+	@PUT
+	@Path("updateAirline/{airlineId}")
+	public void updateAirline(Airline airline, @PathParam("airlineId") int id){
+		airline.setId(id);
+		airlineService.update(airline);
+	}
+	
+	
+
 }
