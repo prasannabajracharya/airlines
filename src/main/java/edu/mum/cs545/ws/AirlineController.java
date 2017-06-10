@@ -51,9 +51,16 @@ public class AirlineController {
 	
 	@PUT
 	@Path("updateAirline/{airlineId}")
-	public void updateAirline(Airline airline, @PathParam("airlineId") int id){
+	@Consumes("application/json")
+	public Response updateAirline(Airline airline, @PathParam("airlineId") int id){
+		try{
 		airline.setId(id);
 		airlineService.update(airline);
+		return Response.ok().entity(airlineService.find(airline)).build();
+		}
+		catch(Exception e){
+			return Response.status(500).entity(e.getMessage()).build();
+		}
 	}
 	
 	@DELETE
