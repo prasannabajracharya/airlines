@@ -20,7 +20,10 @@ public class AirplaneDao {
 	private EntityManager entityManager = JpaUtil.getEntityManager();
 	
 	public void create(Airplane airplane) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(airplane);
+		entityManager.flush();
+		entityManager.getTransaction().commit();
 	}
 
 	public Airplane update(Airplane airplane) {
@@ -28,7 +31,10 @@ public class AirplaneDao {
 	}
 
 	public void delete(Airplane airplane) {
+		entityManager.getTransaction().begin();
 		entityManager.remove(airplane);
+		entityManager.flush();
+		entityManager.getTransaction().commit();
 	}
 
 	public Airplane findOne(long id) {

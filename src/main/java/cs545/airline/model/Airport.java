@@ -3,6 +3,7 @@ package cs545.airline.model;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Airport {
 	private String name;
 	private String city;
 	private String country;
-	@OneToMany(mappedBy = "destination")
+	@OneToMany(mappedBy = "destination", cascade=CascadeType.REMOVE)
 	@OrderBy("arrivalDate, arrivalTime")
 	private List<Flight> arrivals;
 	@OneToMany(mappedBy = "origin")
