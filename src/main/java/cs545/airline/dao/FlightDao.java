@@ -101,7 +101,7 @@ public class FlightDao {
 	@SuppressWarnings("unchecked")
 	public List<Flight> findByDepartureBetween(Date dateFrom, Date dateTo, Date timeFrom, Date timeTo) {
 		Query query = entityManager.createQuery(
-				"select distinct f from Flight f where f.arrivalDate between :DateFrom and :DateTo and f.arrivalTime beteween :TimeFrom and :TimeTo",
+				"select distinct f from Flight f where f.arrivalDate between :DateFrom and :DateTo and f.arrivalTime between :TimeFrom and :TimeTo",
 				Flight.class);
 		query.setParameter("DateFrom", dateFrom, TemporalType.DATE);
 		query.setParameter("TimeFrom", dateFrom, TemporalType.TIME);

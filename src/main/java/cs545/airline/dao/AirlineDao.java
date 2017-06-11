@@ -27,16 +27,23 @@ public class AirlineDao {
 		entityManager.getTransaction().begin();
 		entityManager.persist(airline);
 		entityManager.flush();
+		entityManager.getTransaction().commit();
 	}
 
 	public Airline update(Airline airline) {
-		return entityManager.merge(airline);
+		entityManager.getTransaction().begin();
+		Airline newAirline = entityManager.merge(airline);
+		entityManager.flush();
+		entityManager.getTransaction().commit();
+		return newAirline;
+		
 	}
 
 	public void delete(Airline airline) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(airline);
 		entityManager.flush();
+		entityManager.getTransaction().commit();
 	}
 
 	public Airline findOne(long id) {
