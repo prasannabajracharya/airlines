@@ -86,109 +86,153 @@
     		"name": "SkyTeam"
 		}
 
-2. For Airplane
-    1. GET [http://localhost:8080/airlines/rs/airplane]()
-        * List of all Airplanes in following Format
+
+2. For Flights
+    1. GET [http://localhost:8080/airlines/rs/flight]()
+        * Read list of all flights in JSON Format
           ```
+          eg:
+          input:
+          url :	http://localhost:8080/airlines/rs/flight
+          
           output:
-          [{
-               "capacity": 519,
-               "id": 3,
-               "model": "A380",
-               "serialnr": "12345"
-           },
-           {
-               "capacity": 416,
-               "id": 7,
-               "model": "747",
-               "serialnr": "54321"
-           }]
+          [
+    {
+        "airline": {
+            "id": 2,
+            "name": "SkyTeam"
+        },
+        "airplane": {
+            "capacity": 519,
+            "id": 3,
+            "model": "A380",
+            "serialnr": "12345"
+        },
+        "arrivalDate": "6/25/15",
+        "arrivalTime": "9:00 AM",
+        "departureDate": "8/6/09",
+        "departureTime": "7:10 PM",
+        "destination": {
+            "airportcode": "AMS",
+            "city": "Amsterdam",
+            "country": "The Netherlands",
+            "id": 4,
+            "name": "Schiphol"
+        },
+        "flightnr": "NW 36",
+        "id": 1,
+        "origin": {
+            "airportcode": "DTW",
+            "city": "Detroid",
+            "country": "USA",
+            "id": 5,
+            "name": "Detroid City"
+        }
+    },
             ```
-    2. GET [http://localhost:8080/airlines/rs/airplane/{id}]()
-        * Returns an Airplane that matches the id
-            ```
-            eg: GET http://localhost:8080/airlines/rs/airplane/3
-            output: 
-            {
-               "capacity": 519,
-               "id": 3,
-               "model": "A380",
-               "serialnr": "12345"
-           }
-            ```
-    3. GET [http://localhost:8080/airlines/rs/airplane/serial?serialNo={serialN}]()
-        * Returns an Airplane that matches the serial number to serialN
-            ```
-            eg: GET http://localhost:8080/airlines/rs/airplane/serial?serialNo=12345
-            output: 
-            {
-               "capacity": 519,
-               "id": 3,
-               "model": "A380",
-               "serialnr": "12345"
-           }
-            ```
-    4. GET [http://localhost:8080/airlines/rs/airplane/model?model={modelN}]()
-        * Returns List of Airplane that matches the model to modelN
-            ```
-            eg: GET http://localhost:8080/airlines/rs/airplane/model?model=A380
-            output: 
-            [{
-                    "capacity": 519,
-                    "id": 3,
-                    "model": "A380",
-                    "serialnr": "12345"
-                },
-                {
-                    "capacity": 519,
-                    "id": 11,
-                    "model": "A380",
-                    "serialnr": "23451"
-                }]
-            ```
-    5. POST [http://localhost:8080/airlines/rs/airplane/new]()
-        * Creates new Airline
+    
+    2. POST [http://localhost:8080/airlines/rs/flight/create]()
+        * Creates new Flight
             ``` 
-            eg: POST http://localhost:8080/airlines/rs/airplane/new
+            eg: 
             input: 
-            {
-                "capacity": 500,
-                "model": "A381",
-                "serialnr": "12000"
-            }
+            url : POST http://localhost:8080/airlines/rs/flight/create
+            Payload:
+			{
+				"flightnr": "PB747",
+				"arrivalDate": "6/25/15",
+			    "arrivalTime": "2:53 PM",
+			    "departureDate": "6/25/15",
+			    "departureTime": "1:45 PM"
+			}
+            
             output:
-            {
-                "capacity": 500,
-                "id": 2253,
-                "model": "A381",
-                "serialnr": "12000"
-            }
-    5. DELETE [http://localhost:8080/airlines/rs/airplane/delete/{id}]()
-        * Deletes the airline that matches the id
+		    {
+		        "arrivalDate": "6/25/15",
+		        "arrivalTime": "2:53 PM",
+		        "departureDate": "6/25/15",
+		        "departureTime": "1:45 PM",
+		        "flightnr": "PB747",
+		        "id": 2451
+		    }
+
+            
+    3. PUT [http://localhost:8080/airlines/rs/flight/update/{id}]()
+        * Updates flight information
             ```
-            eg: DELETE http://localhost:8080/airlines/rs/airplane/delete/2253
+            eg: 
+            input: url with id of flight to be updated
+            PUT http://localhost:8080/airlines/rs/flight/update/2451
+            new details of flight to be changed is provided through message body
+		    {
+		        "arrivalDate": "7/25/15",
+		        "arrivalTime": "2:53 PM",
+		        "departureDate": "6/25/15",
+		        "departureTime": "1:45 PM",
+		        "flightnr": "PB888"
+		    }
+			
             output:
-            {
-                "capacity": 500,
-                "id": 2253,
-                "model": "A381",
-                "serialnr": "12000"
-            }
-    6. PUT [http://localhost:8080/airlines/rs/airplane/update]()
-        * Updates airline
+			{
+		        "arrivalDate": "7/25/15",
+		        "arrivalTime": "2:53 PM",
+		        "departureDate": "6/25/15",
+		        "departureTime": "1:45 PM",
+		        "flightnr": "PB888",
+		        "id": 2451
+		    }
+            
+    4. DELETE [http://localhost:8080/airlines/rs/flight/remove?id={value}]()
+        * Deletes the flight that matches the id value passed into id parameter through url
             ```
-            eg: PUT http://localhost:8080/airlines/rs/airplane/update
+            eg: 
             input:
-            {
-                "capacity": 501,
-                "id": 2253,
-                "model": "A381",
-                "serialnr": "12001"
-            }
+            url : DELETE http://localhost:8080/airlines/rs/flight/remove?id=2451
+            payload : N/A
+            
             output:
-            {
-                "capacity": 501,
-                "id": 2253,
-                "model": "A381",
-                "serialnr": "12001"
-            }
+            Information for flight with id = 2451 is deleted from the database
+
+            
+       5. GET [http://localhost:8080/airlines/rs/flight/findByAirline?id={id}]()
+       	* Retrieve flight information using flight name passed in url
+       	```
+       	eg:
+       	input:
+       	url : http://localhost:8080/airlines/rs/flight/findByAirline?id=17
+       	payload : N/A
+       	
+       	output:
+       	Display flight information requested for the airline id in url
+		 {
+        "airline": {
+            "id": 17,
+            "name": "North Star"
+        },
+        "airplane": {
+            "capacity": 519,
+            "id": 18,
+            "model": "A380",
+            "serialnr": "34512"
+        },
+        "arrivalDate": "6/25/15",
+        "arrivalTime": "5:45 AM",
+        "departureDate": "8/6/09",
+        "departureTime": "2:30 PM",
+        "destination": {
+            "airportcode": "FRA",
+            "city": "Frankfurt",
+            "country": "Germany",
+            "id": 19,
+            "name": "Frankfurt International Airport"
+        },
+        "flightnr": "UA 944",
+        "id": 16,
+        "origin": {
+            "airportcode": "ORD",
+            "city": "Chicago",
+            "country": "USA",
+            "id": 20,
+            "name": "Chicago O'hare International"
+        }
+    }
