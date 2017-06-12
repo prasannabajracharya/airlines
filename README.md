@@ -1,9 +1,9 @@
-# airlines
+# Airlines
 ##### Web Application Architecture and Framework - MidTerm Project using JSF and REST
 
 
 ###### An API documentation indicating the URLs provided, HTTP methods available and their meaning and format of the messages request and response.
-1. For Airlines
+#### 1. For Airlines
     1. GET [http://localhost:8080/airlines/rs/airline]()
         * Read list of all airlines in JSON Format
           ```
