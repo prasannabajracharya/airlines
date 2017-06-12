@@ -71,7 +71,7 @@
                 "name": "Yeti Airlines"
             }
             
-       5. GET [http://localhost:8080/airlines/rs/airline/{airlineName}]()
+	5. GET [http://localhost:8080/airlines/rs/airline/{airlineName}]()
        	* Retrieve airline information using airline name passed in url
        	```
        	eg:
@@ -86,8 +86,8 @@
     		"name": "SkyTeam"
 		}
 
-
 2. For Flights
+
     1. GET [http://localhost:8080/airlines/rs/flight]()
         * Read list of all flights in JSON Format
           ```
@@ -95,9 +95,9 @@
           input:
           url :	http://localhost:8080/airlines/rs/flight
           
-          output:
-		{
-		        "airline": {
+         output:
+       		{
+       		 "airline": {
 		            "id": 2,
 		            "name": "SkyTeam"
 		        },
@@ -193,7 +193,7 @@
             Information for flight with id = 2451 is deleted from the database
 
             
-       5. GET [http://localhost:8080/airlines/rs/flight/findByAirline?id={id}]()
+     5. GET [http://localhost:8080/airlines/rs/flight/findByAirline?id={id}]()
        	* Retrieve flight information using flight name passed in url
        	```
        	eg:
@@ -237,8 +237,8 @@
     }
     
     
-    3. For Airplanes
-    		1. GET [http://localhost:8080/airlines/rs/airplane]()
+ 3. For Airplanes
+    1. GET [http://localhost:8080/airlines/rs/airplane]()
         * Read list of all airlines in JSON Format
           ```
           eg:
@@ -321,7 +321,7 @@
 			    "serialnr": "99999"
 			}
             
-       5. GET [http://localhost:8080/airlines/rs/airplane/{airlineName}]()
+    5. GET [http://localhost:8080/airlines/rs/airplane/{airlineName}]()
        	* Retrieve airplane information using airplane name passed in url
        	```
        	eg:
@@ -336,8 +336,10 @@
     		"name": "SkyTeam"
 		}
 		
-		4. For Airport
-    1. GET [http://localhost:8080/airlines/rs/airport]()
+		
+4. For Airport
+    	
+    	1. GET [http://localhost:8080/airlines/rs/airport]()
         * Read list of all airports in JSON Format
           ```
           eg:
