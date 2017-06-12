@@ -10,6 +10,7 @@
           eg:
           input:
           url :	http://localhost:8080/airlines/rs/airline
+          
           output:
           [{
                 "id": 2,
@@ -31,12 +32,14 @@
             {
             	"name":"Buddha Airlines"
             }
+            
             output:
             {
                 "id": 2401,
                 "name": "Buddha Airlines"
             }
-    3. PUT [http://localhost:8080/airlines/rs/airline/update/{id]()
+            
+    3. PUT [http://localhost:8080/airlines/rs/airline/update/{id}]()
         * Updates airline information
             ```
             eg: 
@@ -46,14 +49,15 @@
            {
 				"name" : "Yeti Airlines"
 			}
+			
             output:
             {
                 "id": 1701,
                 "name": "Yeti Airlines"
             }
             
-    4. DELETE [http://localhost:8080/airlines/rs/airline/delete/{id}]()
-        * Deletes the airline that matches the id
+    4. DELETE [http://localhost:8080/airlines/rs/airline/remove?id={value}]()
+        * Deletes the airline that matches the id value passed into id paramerter through url
             ```
             eg: 
             input:
@@ -66,6 +70,21 @@
                 "id": 1701,
                 "name": "Yeti Airlines"
             }
+            
+       5. GET [http://localhost:8080/airlines/rs/airline/{airlineName}]()
+       	* Retrieve airline information using airline name passed in url
+       	```
+       	eg:
+       	input:
+       	url : http://localhost:8080/airlines/rs/airline/SkyTeam
+       	payload : N/A
+       	
+       	output:
+       	Display airline info requested for the name in url
+       	{
+    		"id": 2,
+    		"name": "SkyTeam"
+		}
 
 2. For Airplane
     1. GET [http://localhost:8080/airlines/rs/airplane]()
