@@ -50,7 +50,7 @@ public class AirlineController {
 	}
 	
 	@PUT
-	@Path("updateAirline/{airlineId}")
+	@Path("update/{airlineId}")
 	@Consumes("application/json")
 	public Response updateAirline(Airline airline, @PathParam("airlineId") int id){
 		try{
@@ -64,7 +64,7 @@ public class AirlineController {
 	}
 	
 	@DELETE
-	@Path("removeAirline")
+	@Path("remove")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteAirline(@QueryParam("id") int id){
 		try{
