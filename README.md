@@ -96,39 +96,38 @@
           url :	http://localhost:8080/airlines/rs/flight
           
           output:
-          [
-    {
-        "airline": {
-            "id": 2,
-            "name": "SkyTeam"
-        },
-        "airplane": {
-            "capacity": 519,
-            "id": 3,
-            "model": "A380",
-            "serialnr": "12345"
-        },
-        "arrivalDate": "6/25/15",
-        "arrivalTime": "9:00 AM",
-        "departureDate": "8/6/09",
-        "departureTime": "7:10 PM",
-        "destination": {
-            "airportcode": "AMS",
-            "city": "Amsterdam",
-            "country": "The Netherlands",
-            "id": 4,
-            "name": "Schiphol"
-        },
-        "flightnr": "NW 36",
-        "id": 1,
-        "origin": {
-            "airportcode": "DTW",
-            "city": "Detroid",
-            "country": "USA",
-            "id": 5,
-            "name": "Detroid City"
-        }
-    },
+		{
+		        "airline": {
+		            "id": 2,
+		            "name": "SkyTeam"
+		        },
+		        "airplane": {
+		            "capacity": 519,
+		            "id": 3,
+		            "model": "A380",
+		            "serialnr": "12345"
+		        },
+		        "arrivalDate": "6/25/15",
+		        "arrivalTime": "9:00 AM",
+		        "departureDate": "8/6/09",
+		        "departureTime": "7:10 PM",
+		        "destination": {
+		            "airportcode": "AMS",
+		            "city": "Amsterdam",
+		            "country": "The Netherlands",
+		            "id": 4,
+		            "name": "Schiphol"
+		        },
+		        "flightnr": "NW 36",
+		        "id": 1,
+		        "origin": {
+		            "airportcode": "DTW",
+		            "city": "Detroid",
+		            "country": "USA",
+		            "id": 5,
+		            "name": "Detroid City"
+		        }
+		    }
             ```
     
     2. POST [http://localhost:8080/airlines/rs/flight/create]()
@@ -236,3 +235,196 @@
             "name": "Chicago O'hare International"
         }
     }
+    
+    
+    3. For Airplanes
+    		1. GET [http://localhost:8080/airlines/rs/airplane]()
+        * Read list of all airlines in JSON Format
+          ```
+          eg:
+          input:
+          url :	http://localhost:8080/airlines/rs/airplane
+          
+          output:
+          [ 
+		    {
+		        "capacity": 519,
+		        "id": 3,
+		        "model": "A380",
+		        "serialnr": "12345"
+		    },
+		    {
+		        "capacity": 416,
+		        "id": 7,
+		        "model": "747",
+		        "serialnr": "54321"
+		    }
+		    ]
+            ```
+    
+    2. POST [http://localhost:8080/airlines/rs/airplane/create]()
+        * Creates new Airplane
+            ``` 
+            eg: 
+            input: 
+            url : POST http://localhost:8080/airlines/rs/airplane/create
+            Payload:
+		    {
+		        "capacity": 420,
+		        "model": "A380",
+		        "serialnr": "88888"
+		    }
+            
+            output:
+			{
+			    "capacity": 420,
+			    "id": 2551,
+			    "model": "A380",
+			    "serialnr": "88888"
+			}
+            
+    3. PUT [http://localhost:8080/airlines/rs/airplane/update/{id}]()
+        * Updates airplane information
+            ```
+            eg: 
+            input: url with id of airplane to be updated
+            PUT http://localhost:8080/airlines/rs/airplane/update/2551
+            new details of airplane to be changed is provided through message body
+		    {
+		        "capacity": 420,
+		        "model": "B747",
+		        "serialnr": "99999"
+		    }
+			
+            output:
+			{
+			    "capacity": 420,
+			    "id": 2551,
+			    "model": "B747",
+			    "serialnr": "99999"
+			}
+            
+    4. DELETE [http://localhost:8080/airlines/rs/airplane/remove?id={value}]()
+        * Deletes the airplane that matches the id value passed into id paramerter through url
+            ```
+            eg: 
+            input:
+            url : DELETE http://localhost:8080/airlines/rs/airplane/remove?id=2551
+            payload : N/A
+            
+            output:
+            following info is deleted from the database
+			{
+			    "capacity": 420,
+			    "id": 2551,
+			    "model": "B747",
+			    "serialnr": "99999"
+			}
+            
+       5. GET [http://localhost:8080/airlines/rs/airplane/{airlineName}]()
+       	* Retrieve airplane information using airplane name passed in url
+       	```
+       	eg:
+       	input:
+       	url : http://localhost:8080/airlines/rs/airplane/SkyTeam
+       	payload : N/A
+       	
+       	output:
+       	Display airplane info requested for the name in url
+       	{
+    		"id": 2,
+    		"name": "SkyTeam"
+		}
+		
+		4. For Airport
+    1. GET [http://localhost:8080/airlines/rs/airport]()
+        * Read list of all airports in JSON Format
+          ```
+          eg:
+          input:
+          url :	http://localhost:8080/airlines/rs/airport
+          Payload : N/A
+          
+          output:
+          [
+				{
+			        "airportcode": "AMS",
+			        "city": "Amsterdam",
+			        "country": "The Netherlands",
+			        "id": 4,
+			        "name": "Schiphol"
+			    },
+			    {
+			        "airportcode": "DTW",
+			        "city": "Detroid",
+			        "country": "USA",
+			        "id": 5,
+			        "name": "Detroid City"
+			    }
+		    ]
+            ```
+    
+    2. POST [http://localhost:8080/airlines/rs/airport/create]()
+        * Creates new Airline
+            ``` 
+            eg: 
+            input: 
+            url : POST http://localhost:8080/airlines/rs/airport/create
+            Payload:
+			    {
+			        "airportcode": "CID",
+			        "city": "Des Monies",
+			        "country": "United States",
+			        "name": "Cedar Rapids"
+			    }
+            
+            output:
+				{
+				    "airportcode": "CID",
+				    "city": "Des Monies",
+				    "country": "United States",
+				    "id": 2601,
+				    "name": "Cedar Rapids"
+				}
+            
+    3. PUT [http://localhost:8080/airlines/rs/airport/update/{id}]()
+        * Updates airport information
+            ```
+            eg: 
+            input: url with id of airport to be updated
+            PUT http://localhost:8080/airlines/rs/airport/update/2601
+            new name of airport to be changed is provided through message body
+			    {
+			        "airportcode": "CEDR",
+			        "city": "Des Monies",
+			        "country": "United States",
+			        "name": "Cedar Rapids"
+			    }
+			
+            output:
+			{
+			    "airportcode": "CEDR",
+			    "city": "Des Monies",
+			    "country": "United States",
+			    "id": 2601,
+			    "name": "Cedar Rapids"
+			}
+            
+    4. DELETE [http://localhost:8080/airlines/rs/airport/remove?id={value}]()
+        * Deletes the airport that matches the id value passed into id paramerter through url
+            ```
+            eg: 
+            input:
+            url : DELETE http://localhost:8080/airlines/rs/airport/remove?id=2601
+            payload : N/A
+            
+            output:
+            following info is deleted from the database
+			{
+			    "airportcode": "CEDR",
+			    "city": "Des Monies",
+			    "country": "United States",
+			    "id": 2601,
+			    "name": "Cedar Rapids"
+			}
+         
